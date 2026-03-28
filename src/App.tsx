@@ -1,7 +1,11 @@
-import Title from "./app-components/Title"
+import HomeScreen from "./app-components/HomeScreen";
 
 function App() {
-  return <div><Title/></div>;
+  return (
+    <div>
+      <HomeScreen />
+    </div>
+  );
 }
 
 export default App;
