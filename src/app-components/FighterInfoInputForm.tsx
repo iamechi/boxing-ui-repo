@@ -48,6 +48,7 @@ export default function FighterInfoInputForm({
     setErrors((e) => ({ ...e, [String(key)]: "" }));
   };
 
+  // Validate the form fields and set error messages if necessary
   const validate = (): boolean => {
     const e: Record<string, string> = {};
     if (!form.first_name?.trim()) e.first_name = "First name required";
@@ -174,7 +175,9 @@ export default function FighterInfoInputForm({
         <button type="button" onClick={handleReset}>
           Reset
         </button>
-        <button type="submit">Save Fighter</button>
+        <button type="submit" onClick={handleSubmit}>
+          Save Fighter
+        </button>
       </div>
     </form>
   );

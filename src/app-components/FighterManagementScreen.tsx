@@ -1,8 +1,10 @@
 import { Fragment } from "react";
 import Title from "./Title";
 import NavBar from "./NavigationBar.tsx";
+import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router";
 
 export interface Fighter {
   fighterID: number;
@@ -23,6 +25,13 @@ export interface Fighter {
 }
 
 function FighterManagementScreen() {
+  const api = axios.create({ 
+    baseURL: "http://localhost:8081" , 
+    headers: {
+      "Content-Type": "application/json",
+    }
+  });
+  
   const colHeaders = [
     "Fighter ID",
     "First Name",
@@ -42,15 +51,34 @@ function FighterManagementScreen() {
   let [fighters, setFighters] = useState<Fighter[]>([]);
   useEffect(() => {
     const fetchFighterRecords = async () => {
-      let response = await fetch("http://localhost:8081/fighters");
-      let fighterData = (await response.json()) as Fighter[];
+      let response = await axios.get("/fighters");
+      let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
     };
 
     fetchFighterRecords();
   }, []);
 
-  return (
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/fighters/add");
+  }
+
+  const addFighterSubmitHandler = (fighter: Fighter) => {
+    // Send a POST request to the backend API to add the new fighter
+    await api.post("/fighters/add", fighter)
+      .then((response) => {
+        // Handle successful response, e.g., show a success message or navigate to another page
+        console.log("Fighter added successfully:", response.data);
+        // Optionally, you can refresh the fighter list or navigate to the fighter management screen
+        navigate("/fighters");
+      })
+      .catch((error) => {
+        // Handle error response, e.g., show an error message
+        console.error("Error adding fighter:", error);
+      });
+  };
     <>
       <Title Title={"Fighter List"} />
       <table>
@@ -82,8 +110,8 @@ function FighterManagementScreen() {
         </tbody>
       </table>
       <div>
-        <button onClick={() => (window.location.href = "/fighters/add")}>
-          Add Fighter
+        <button>
+          <Link to="/fighters/add">Add Fighter</Link>
         </button>
       </div>
     </>
