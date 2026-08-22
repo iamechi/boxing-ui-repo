@@ -1,10 +1,10 @@
 import { Fragment } from "react";
 import Title from "./Title";
 import NavBar from "./NavigationBar.tsx";
-import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
+import AxiosInstance from "./AxiosInstance.tsx";
 
 export interface Fighter {
   fighterID: number;
@@ -25,13 +25,8 @@ export interface Fighter {
 }
 
 function FighterManagementScreen() {
-  const api = axios.create({ 
-    baseURL: "http://localhost:8081" , 
-    headers: {
-      "Content-Type": "application/json",
-    }
-  });
-  
+  const api = AxiosInstance;
+
   const colHeaders = [
     "Fighter ID",
     "First Name",
@@ -51,7 +46,7 @@ function FighterManagementScreen() {
   let [fighters, setFighters] = useState<Fighter[]>([]);
   useEffect(() => {
     const fetchFighterRecords = async () => {
-      let response = await axios.get("/fighters");
+      let response = await api.get("/fighters");
       let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
     };
@@ -61,24 +56,33 @@ function FighterManagementScreen() {
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/fighters/add");
-  }
+  const handleClick = (submitType: string) => {
+    var path = "/fighters/add";
 
-  const addFighterSubmitHandler = (fighter: Fighter) => {
-    // Send a POST request to the backend API to add the new fighter
-    await api.post("/fighters/add", fighter)
-      .then((response) => {
-        // Handle successful response, e.g., show a success message or navigate to another page
-        console.log("Fighter added successfully:", response.data);
-        // Optionally, you can refresh the fighter list or navigate to the fighter management screen
-        navigate("/fighters");
-      })
-      .catch((error) => {
-        // Handle error response, e.g., show an error message
-        console.error("Error adding fighter:", error);
-      });
+    if (submitType === "update") {
+      path = "/fighters/update";
+    }
+
+    const addFighterSubmitHandler = async (fighter: Fighter) => {
+      // Send a POST request to the backend API to add the new fighter
+      await api
+        .post(path, fighter)
+        .then((response) => {
+          // Handle successful response, e.g., show a success message or navigate to another page
+          console.log("Fighter added successfully:", response.data);
+          // Optionally, you can refresh the fighter list or navigate to the fighter management screen
+          navigate("/fighters");
+        })
+        .catch((error) => {
+          // Handle error response, e.g., show an error message
+          console.error("Error adding fighter:", error);
+        });
+    };
+
+    navigate("/fighters/add", { state: { onSubmit: addFighterSubmitHandler } });
   };
+
+  return (
     <>
       <Title Title={"Fighter List"} />
       <table>
@@ -110,9 +114,7 @@ function FighterManagementScreen() {
         </tbody>
       </table>
       <div>
-        <button>
-          <Link to="/fighters/add">Add Fighter</Link>
-        </button>
+        <button onClick={() => handleClick("add")}>Add Fighter</button>
       </div>
     </>
   );
