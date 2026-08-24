@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import type { Fighter } from "./FighterManagementScreen";
+import api from "./AxiosInstance.tsx";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // /c:/boxing-app-react-ui/src/app-components/FighterInfoInputForm.tsx
 
 interface Props {
+  submitType: string;
   initial?: Partial<Fighter>;
-  onSubmit?: (fighter: Fighter) => void;
-  onCancel?: () => void;
 }
 
 const defaultState: Fighter = {
@@ -27,19 +29,20 @@ const defaultState: Fighter = {
   photo_attachment: "",
 };
 
-export default function FighterInfoInputForm({
-  initial,
-  onSubmit,
-  onCancel,
-}: Props) {
+export default function FighterInfoInputForm() {
   // Initialize form state with default values and any provided initial values
   // Use the useState hook to manage form state and errors
   //passes the default state but has the initial values override the default state if they are provided
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { submitType, initial } = location.state?.submitType || "add";
+
   const [form, setForm] = useState<Fighter>({
     ...defaultState,
     ...(initial || {}),
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   /*K extends keyof Fighter means that K can only be a key of the Fighter interface. 
   This ensures that the update function can only be called with valid keys of the Fighter object.*/
@@ -61,16 +64,41 @@ export default function FighterInfoInputForm({
     return Object.keys(e).length === 0;
   };
 
+  const addFighterSubmitHandler = async (fighter: Fighter) => {
+    var path = "/fighters/add";
+
+    if (submitType === "update") {
+      path = "/fighters/update";
+    }
+
+    console.log("first name: " + fighter.first_name);
+    console.log("last name: " + fighter.last_name);
+    // Send a POST request to the backend API to add the new fighter
+    await api
+      .post(path, fighter)
+      .then((response) => {
+        // Handle successful response, e.g., show a success message or navigate to another page
+        console.log("Fighter added successfully:", response.data);
+        // Optionally, you can refresh the fighter list or navigate to the fighter management screen
+        navigate("/fighters");
+      })
+      .catch((error) => {
+        // Handle error response, e.g., show an error message
+        setErrorMessage("Error adding fighter: " + error.response.data);
+        console.error("Error adding fighter:", error);
+      });
+  };
+
   const handleSubmit = (ev?: React.FormEvent) => {
     ev?.preventDefault();
     if (!validate()) return;
-    onSubmit?.(form);
+    console.log("Submitting form:", form);
+    addFighterSubmitHandler(form);
   };
 
   const handleReset = () => {
     setForm({ ...defaultState });
     setErrors({});
-    onCancel?.();
   };
 
   return (
@@ -78,6 +106,9 @@ export default function FighterInfoInputForm({
       onSubmit={handleSubmit}
       style={{ maxWidth: 640, display: "grid", gap: 8 }}
     >
+      <div>
+        {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
+      </div>
       <div style={{ display: "flex", gap: 8 }}>
         <div style={{ flex: 1 }}>
           <label>
@@ -106,9 +137,27 @@ export default function FighterInfoInputForm({
           )}
         </div>
       </div>
+      <div>
+        <label>
+          State of Residence
+          <input
+            type="text"
+            value={form.current_state_residence}
+            onChange={(e) => update("current_state_residence", e.target.value)}
+          />
+        </label>
+        <label>
+          City of Residence
+          <input
+            type="text"
+            value={form.current_city_residence}
+            onChange={(e) => update("current_city_residence", e.target.value)}
+          />
+        </label>
+      </div>
       <div style={{ display: "flex", gap: 8 }}>
         <label style={{ flex: 1 }}>
-          Weight (kg)
+          Weight (lbs)
           <input
             type="number"
             min={0}

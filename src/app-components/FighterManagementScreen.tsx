@@ -3,8 +3,8 @@ import Title from "./Title";
 import NavBar from "./NavigationBar.tsx";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
-import AxiosInstance from "./AxiosInstance.tsx";
+import api from "./AxiosInstance.tsx";
+import { useNavigate } from "react-router-dom";
 
 export interface Fighter {
   fighterID: number;
@@ -25,8 +25,6 @@ export interface Fighter {
 }
 
 function FighterManagementScreen() {
-  const api = AxiosInstance;
-
   const colHeaders = [
     "Fighter ID",
     "First Name",
@@ -38,10 +36,12 @@ function FighterManagementScreen() {
     "Draws",
     "K.O's",
     "State",
-    "Country",
+    "City",
     "Years of Experience",
     "Knockout Percentage",
   ];
+
+  const navigate = useNavigate();
 
   let [fighters, setFighters] = useState<Fighter[]>([]);
   useEffect(() => {
@@ -54,8 +54,6 @@ function FighterManagementScreen() {
     fetchFighterRecords();
   }, []);
 
-  const navigate = useNavigate();
-
   const handleClick = (submitType: string) => {
     var path = "/fighters/add";
 
@@ -63,23 +61,7 @@ function FighterManagementScreen() {
       path = "/fighters/update";
     }
 
-    const addFighterSubmitHandler = async (fighter: Fighter) => {
-      // Send a POST request to the backend API to add the new fighter
-      await api
-        .post(path, fighter)
-        .then((response) => {
-          // Handle successful response, e.g., show a success message or navigate to another page
-          console.log("Fighter added successfully:", response.data);
-          // Optionally, you can refresh the fighter list or navigate to the fighter management screen
-          navigate("/fighters");
-        })
-        .catch((error) => {
-          // Handle error response, e.g., show an error message
-          console.error("Error adding fighter:", error);
-        });
-    };
-
-    navigate("/fighters/add", { state: { onSubmit: addFighterSubmitHandler } });
+    navigate("/fighters/add", { state: { submitType: submitType } });
   };
 
   return (
