@@ -44,6 +44,8 @@ function FighterManagementScreen() {
   const navigate = useNavigate();
 
   let [fighters, setFighters] = useState<Fighter[]>([]);
+  let [selectedFighterIndex, setSelectedFighterIndex] = useState(-1);
+  let [errorMessage, setErrorMessage] = useState<string>("");
   useEffect(() => {
     const fetchFighterRecords = async () => {
       let response = await api.get("/fighters");
@@ -54,14 +56,21 @@ function FighterManagementScreen() {
     fetchFighterRecords();
   }, []);
 
-  const handleClick = (submitType: string) => {
-    var path = "/fighters/add";
-
-    if (submitType === "update") {
-      path = "/fighters/update";
+  const handleFighterAddUpdateClick = (submitType: string) => {
+    if (submitType === "update" && selectedFighterIndex === -1) {
+      setErrorMessage("Please select a fighter to update.");
+      return;
     }
 
-    navigate("/fighters/add", { state: { submitType: submitType } });
+    let fighterToUpdate =
+      selectedFighterIndex !== -1 ? fighters[selectedFighterIndex] : null;
+    navigate("/fighters/add", {
+      state: { submitType: submitType, initial: fighterToUpdate },
+    });
+  };
+
+  const handleSelectFighter = (fighterID: number) => {
+    setSelectedFighterIndex(fighterID);
   };
 
   return (
@@ -75,9 +84,20 @@ function FighterManagementScreen() {
             ))}
           </tr>
         </thead>
+        <div>
+          {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
+        </div>
         <tbody>
           {fighters.map((fighter) => (
-            <tr>
+            <tr
+              key={fighter.fighterID}
+              className={
+                selectedFighterIndex == fighter.fighterID
+                  ? "fighterSelected"
+                  : ""
+              }
+              onClick={() => handleSelectFighter(fighter.fighterID)}
+            >
               <td>{fighter.fighterID}</td>
               <td>{fighter.first_name}</td>
               <td>{fighter.last_name}</td>
@@ -96,7 +116,12 @@ function FighterManagementScreen() {
         </tbody>
       </table>
       <div>
-        <button onClick={() => handleClick("add")}>Add Fighter</button>
+        <button onClick={() => handleFighterAddUpdateClick("add")}>
+          Add Fighter
+        </button>
+        <button onClick={() => handleFighterAddUpdateClick("update")}>
+          Update Fighter
+        </button>
       </div>
     </>
   );
