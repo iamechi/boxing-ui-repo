@@ -35,7 +35,11 @@ export default function FighterInfoInputForm() {
   //passes the default state but has the initial values override the default state if they are provided
   const navigate = useNavigate();
   const location = useLocation();
-  const { submitType, initial } = location.state?.submitType || "add";
+
+  const { submitType, initial } = location.state || {
+    submitType: "add",
+    initial: undefined,
+  };
 
   const [form, setForm] = useState<Fighter>({
     ...defaultState,

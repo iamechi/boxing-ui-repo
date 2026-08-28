@@ -14,7 +14,9 @@ function Menu({ menuList }: MenuProps) {
     <>
       <nav>
         {menuList.map((menuLabel) => (
-          <Link to={menuLabel.menuPath}>{menuLabel.menuTitle}</Link>
+          <Link key={menuLabel.menuTitle} to={menuLabel.menuPath}>
+            {menuLabel.menuTitle}
+          </Link>
         ))}
       </nav>
       <Outlet />

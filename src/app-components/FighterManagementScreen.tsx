@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import api from "./AxiosInstance.tsx";
 import { useNavigate } from "react-router-dom";
+import "/src/BoxingApp.css";
 
 export interface Fighter {
   fighterID: number;
@@ -51,6 +52,7 @@ function FighterManagementScreen() {
       let response = await api.get("/fighters");
       let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
+      console.log("Fetched fighters:", fighterData);
     };
 
     fetchFighterRecords();
@@ -64,13 +66,14 @@ function FighterManagementScreen() {
 
     let fighterToUpdate =
       selectedFighterIndex !== -1 ? fighters[selectedFighterIndex] : null;
+    console.log("Fighter to update:", fighterToUpdate);
     navigate("/fighters/add", {
       state: { submitType: submitType, initial: fighterToUpdate },
     });
   };
 
-  const handleSelectFighter = (fighterID: number) => {
-    setSelectedFighterIndex(fighterID);
+  const handleSelectFighter = (index: number) => {
+    setSelectedFighterIndex(index);
   };
 
   return (
@@ -80,23 +83,20 @@ function FighterManagementScreen() {
         <thead>
           <tr>
             {colHeaders.map((colName) => (
-              <th scope="col">{colName}</th>
+              <th key={colName} scope="col">
+                {colName}
+              </th>
             ))}
           </tr>
         </thead>
-        <div>
-          {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
-        </div>
         <tbody>
-          {fighters.map((fighter) => (
+          {fighters.map((fighter, index) => (
             <tr
               key={fighter.fighterID}
               className={
-                selectedFighterIndex == fighter.fighterID
-                  ? "fighterSelected"
-                  : ""
+                selectedFighterIndex === index ? "fighterSelected" : ""
               }
-              onClick={() => handleSelectFighter(fighter.fighterID)}
+              onClick={() => handleSelectFighter(index)}
             >
               <td>{fighter.fighterID}</td>
               <td>{fighter.first_name}</td>
@@ -122,6 +122,9 @@ function FighterManagementScreen() {
         <button onClick={() => handleFighterAddUpdateClick("update")}>
           Update Fighter
         </button>
+      </div>
+      <div>
+        {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
       </div>
     </>
   );
