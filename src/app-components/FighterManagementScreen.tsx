@@ -47,6 +47,7 @@ function FighterManagementScreen() {
   let [fighters, setFighters] = useState<Fighter[]>([]);
   let [selectedFighterIndex, setSelectedFighterIndex] = useState(-1);
   let [errorMessage, setErrorMessage] = useState<string>("");
+  let [searchTerm, setSearchTerm] = useState<string>("");
   useEffect(() => {
     const fetchFighterRecords = async () => {
       let response = await api.get("/fighters");
@@ -72,6 +73,20 @@ function FighterManagementScreen() {
     });
   };
 
+  const handleSearch = async (searchTerm: string) => {
+    let [firstName, lastName] = searchTerm.split(" ");
+    console.log("first name: " + firstName);
+    let searchCriteria = {
+      first_name: firstName || "",
+      last_name: lastName || "",
+    };
+
+    api.post("/fighters/search", { searchCriteria }).then(async (response) => {
+      let fighterData = (await response.data) as Fighter[];
+      setFighters(fighterData);
+      console.log("Search results:", fighterData);
+    });
+  };
   const handleSelectFighter = (index: number) => {
     setSelectedFighterIndex(index);
   };
@@ -79,6 +94,14 @@ function FighterManagementScreen() {
   return (
     <>
       <Title Title={"Fighter List"} />
+      <div>
+        <input
+          type="text"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search fighters..."
+        />
+        <button onClick={() => handleSearch(searchTerm)}>Search</button>
+      </div>
       <table>
         <thead>
           <tr>
