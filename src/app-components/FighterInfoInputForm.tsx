@@ -225,6 +225,9 @@ export default function FighterInfoInputForm() {
         </label>
       </div>
       <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
+        <button type="button" onClick={() => navigate("/fighters")}>
+          Cancel
+        </button>
         <button type="button" onClick={handleReset}>
           Reset
         </button>

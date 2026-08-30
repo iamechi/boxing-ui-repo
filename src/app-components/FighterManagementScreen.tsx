@@ -47,7 +47,7 @@ function FighterManagementScreen() {
   let [fighters, setFighters] = useState<Fighter[]>([]);
   let [selectedFighterIndex, setSelectedFighterIndex] = useState(-1);
   let [errorMessage, setErrorMessage] = useState<string>("");
-  let [searchTerm, setSearchTerm] = useState<string>("");
+  let [searchForm, setSearchForm] = useState<Fighter>({} as Fighter);
   useEffect(() => {
     const fetchFighterRecords = async () => {
       let response = await api.get("/fighters");
@@ -66,22 +66,17 @@ function FighterManagementScreen() {
     }
 
     let fighterToUpdate =
-      selectedFighterIndex !== -1 ? fighters[selectedFighterIndex] : null;
+      selectedFighterIndex !== -1 && submitType === "update"
+        ? fighters[selectedFighterIndex]
+        : null;
     console.log("Fighter to update:", fighterToUpdate);
     navigate("/fighters/add", {
       state: { submitType: submitType, initial: fighterToUpdate },
     });
   };
 
-  const handleSearch = async (searchTerm: string) => {
-    let [firstName, lastName] = searchTerm.split(" ");
-    console.log("first name: " + firstName);
-    let searchCriteria = {
-      first_name: firstName || "",
-      last_name: lastName || "",
-    };
-
-    api.post("/fighters/search", { searchCriteria }).then(async (response) => {
+  const handleSearch = async (searchForm: Fighter) => {
+    api.post("/fighters/search", searchForm).then(async (response) => {
       let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
       console.log("Search results:", fighterData);
@@ -95,12 +90,34 @@ function FighterManagementScreen() {
     <>
       <Title Title={"Fighter List"} />
       <div>
+        <label>First Name:</label>
         <input
           type="text"
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search fighters..."
+          onChange={(e) =>
+            setSearchForm({ ...searchForm, first_name: e.target.value })
+          }
+          placeholder="Search first name..."
         />
-        <button onClick={() => handleSearch(searchTerm)}>Search</button>
+        <label>Last Name:</label>
+        <input
+          type="text"
+          onChange={(e) =>
+            setSearchForm({ ...searchForm, last_name: e.target.value })
+          }
+          placeholder="Search last name..."
+        />
+        <label>State:</label>
+        <input
+          type="text"
+          onChange={(e) =>
+            setSearchForm({
+              ...searchForm,
+              current_state_residence: e.target.value,
+            })
+          }
+          placeholder="Search state..."
+        />
+        <button onClick={() => handleSearch(searchForm)}>Search</button>
       </div>
       <table>
         <thead>
