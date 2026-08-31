@@ -32,6 +32,7 @@ function FighterManagementScreen() {
     "Last Name",
     "Height",
     "Weight",
+    "Fights",
     "Wins",
     "Losses",
     "Draws",
@@ -48,6 +49,7 @@ function FighterManagementScreen() {
   let [selectedFighterIndex, setSelectedFighterIndex] = useState(-1);
   let [errorMessage, setErrorMessage] = useState<string>("");
   let [searchForm, setSearchForm] = useState<Fighter>({} as Fighter);
+
   useEffect(() => {
     const fetchFighterRecords = async () => {
       let response = await api.get("/fighters");
@@ -88,42 +90,48 @@ function FighterManagementScreen() {
 
   return (
     <>
-      <Title Title={"Fighter List"} />
-      <div>
-        <label>First Name:</label>
-        <input
-          type="text"
-          onChange={(e) =>
-            setSearchForm({ ...searchForm, first_name: e.target.value })
-          }
-          placeholder="Search first name..."
-        />
-        <label>Last Name:</label>
-        <input
-          type="text"
-          onChange={(e) =>
-            setSearchForm({ ...searchForm, last_name: e.target.value })
-          }
-          placeholder="Search last name..."
-        />
-        <label>State:</label>
-        <input
-          type="text"
-          onChange={(e) =>
-            setSearchForm({
-              ...searchForm,
-              current_state_residence: e.target.value,
-            })
-          }
-          placeholder="Search state..."
-        />
+      <h2 id="pageHeader">Fighter List</h2>
+      <div className={"searchBar"}>
+        <div>
+          <label>First Name:</label>
+          <input
+            type="text"
+            onChange={(e) =>
+              setSearchForm({ ...searchForm, first_name: e.target.value })
+            }
+            placeholder="Search first name..."
+          />
+        </div>
+        <div>
+          <label>Last Name:</label>
+          <input
+            type="text"
+            onChange={(e) =>
+              setSearchForm({ ...searchForm, last_name: e.target.value })
+            }
+            placeholder="Search last name..."
+          />
+        </div>
+        <div>
+          <label>State:</label>
+          <input
+            type="text"
+            onChange={(e) =>
+              setSearchForm({
+                ...searchForm,
+                current_state_residence: e.target.value,
+              })
+            }
+            placeholder="Search state..."
+          />
+        </div>
         <button onClick={() => handleSearch(searchForm)}>Search</button>
       </div>
       <table>
         <thead>
           <tr>
             {colHeaders.map((colName) => (
-              <th key={colName} scope="col">
+              <th className="column-name" key={colName} scope="col">
                 {colName}
               </th>
             ))}
@@ -146,6 +154,7 @@ function FighterManagementScreen() {
               <td>{fighter.fights}</td>
               <td>{fighter.wins}</td>
               <td>{fighter.losses}</td>
+              <td>{fighter.draws}</td>
               <td>{fighter.KOS}</td>
               <td>{fighter.current_state_residence}</td>
               <td>{fighter.current_city_residence}</td>

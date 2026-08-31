@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link, Outlet } from "react-router-dom";
+import "/src/BoxingApp.css";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Fragment } from "react";
 interface MenuProps {
@@ -12,7 +13,7 @@ interface MenuProps {
 function Menu({ menuList }: MenuProps) {
   return (
     <>
-      <nav>
+      <nav id="navBar">
         {menuList.map((menuLabel) => (
           <Link key={menuLabel.menuTitle} to={menuLabel.menuPath}>
             {menuLabel.menuTitle}
