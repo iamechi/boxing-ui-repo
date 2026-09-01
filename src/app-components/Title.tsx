@@ -3,7 +3,7 @@ interface TitleProps {
 }
 
 function Title({ Title }: TitleProps) {
-  return <h1>{Title}</h1>;
+  return <h1 id="homeTitle">{Title}</h1>;
 }
 
 export default Title;

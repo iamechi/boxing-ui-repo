@@ -1,0 +1,37 @@
+.fighterSelected td{
+  background-color: blue;
+  color: white;
+}
+
+.searchBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 15px;
+}
+
+.searchBar div{
+  display: flex;
+  gap: 8px;
+  margin-right: 20px;
+}
+
+#homeTitle {
+    display: flex;
+    justify-content: center;
+}
+
+#pageHeader {
+    justify-content: left;
+}
+
+#navBar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.column-name {
+    width: 5%;
+}
+

@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-
 interface NavProps {
   navList: string[];
 }

@@ -6,11 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 // /c:/boxing-app-react-ui/src/app-components/FighterInfoInputForm.tsx
 
-interface Props {
-  submitType: string;
-  initial?: Partial<Fighter>;
-}
-
 const defaultState: Fighter = {
   fighterID: 0,
   first_name: "",
@@ -35,7 +30,11 @@ export default function FighterInfoInputForm() {
   //passes the default state but has the initial values override the default state if they are provided
   const navigate = useNavigate();
   const location = useLocation();
-  const { submitType, initial } = location.state?.submitType || "add";
+
+  const { submitType, initial } = location.state || {
+    submitType: "add",
+    initial: undefined,
+  };
 
   const [form, setForm] = useState<Fighter>({
     ...defaultState,
@@ -221,6 +220,9 @@ export default function FighterInfoInputForm() {
         </label>
       </div>
       <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
+        <button type="button" onClick={() => navigate("/fighters")}>
+          Cancel
+        </button>
         <button type="button" onClick={handleReset}>
           Reset
         </button>

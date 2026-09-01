@@ -1,10 +1,8 @@
-import { Fragment, use } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeScreen from "./app-components/HomeScreen";
 import FighterManagementScreen from "./app-components/FighterManagementScreen";
 import FighterInfoInputForm from "./app-components/FighterInfoInputForm";
-import Menu from "./app-components/Menu";
-import Title from "./app-components/Title";
+import Homepage from "./app-components/Homepage";
 
 function App() {
   return (
@@ -16,6 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomeScreen />}>
+            <Route path="home" element={<Homepage />} />
             <Route path="areas" element={<></>} />
             <Route path="fighters" element={<FighterManagementScreen />} />
             <Route path="fighters/add" element={<FighterInfoInputForm />} />
