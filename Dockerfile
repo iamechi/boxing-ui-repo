@@ -29,8 +29,11 @@ FROM nginx:1.25-alpine
 #Removes default welcome pages
 RUN rm -rf /usr/share/nginx/html/*
 
+#Copying the custom nginx.conf file
+COPY nginx.conf /etc/nginx/conf.d/default.conf 
+
 #Copying the web assets that will be served to browser to the nginx server
-COPY --from=builder /app/build /usr/share/nginx/html/*
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 #Exposing port 5173 within the container
 EXPOSE 5173

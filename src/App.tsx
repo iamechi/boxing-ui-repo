@@ -1,11 +1,8 @@
-import { Fragment, use } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeScreen from "./app-components/HomeScreen";
 import FighterManagementScreen from "./app-components/FighterManagementScreen";
 import FighterInfoInputForm from "./app-components/FighterInfoInputForm";
 import Homepage from "./app-components/Homepage";
-import Menu from "./app-components/Menu";
-import Title from "./app-components/Title";
 
 function App() {
   return (

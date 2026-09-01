@@ -1,6 +1,3 @@
-import { Fragment } from "react";
-import Title from "./Title";
-import NavBar from "./NavigationBar.tsx";
 import { useEffect } from "react";
 import { useState } from "react";
 import api from "./AxiosInstance.tsx";

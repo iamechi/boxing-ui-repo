@@ -6,11 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 // /c:/boxing-app-react-ui/src/app-components/FighterInfoInputForm.tsx
 
-interface Props {
-  submitType: string;
-  initial?: Partial<Fighter>;
-}
-
 const defaultState: Fighter = {
   fighterID: 0,
   first_name: "",
