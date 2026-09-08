@@ -8,6 +8,7 @@ interface MenuProps {
   }[];
 }
 
+//Creates a menu navigation bar for the application
 function Menu({ menuList }: MenuProps) {
   return (
     <>

@@ -4,6 +4,7 @@ import api from "./AxiosInstance.tsx";
 import { useNavigate } from "react-router-dom";
 import "/src/BoxingApp.css";
 
+//This is the data object on the front-end for the fighter records
 export interface Fighter {
   fighterID: number;
   first_name: string;
@@ -23,6 +24,7 @@ export interface Fighter {
 }
 
 function FighterManagementScreen() {
+  //creating an array for the column headers of the fighter info table
   const colHeaders = [
     "Fighter ID",
     "First Name",
@@ -40,24 +42,28 @@ function FighterManagementScreen() {
     "Knockout Percentage",
   ];
 
+  //setting a const variable to use the useNavigate method to control screen navigation
   const navigate = useNavigate();
 
+  /*Here all of the variables and functions based on the UseState hook
+  are initialized*/
   let [fighters, setFighters] = useState<Fighter[]>([]);
   let [selectedFighterIndex, setSelectedFighterIndex] = useState(-1);
   let [errorMessage, setErrorMessage] = useState<string>("");
   let [searchForm, setSearchForm] = useState<Fighter>({} as Fighter);
 
+  //retrieved the fighter data upon loading the screen
   useEffect(() => {
     const fetchFighterRecords = async () => {
       let response = await api.get("/fighters");
       let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
-      console.log("Fetched fighters:", fighterData);
     };
 
     fetchFighterRecords();
   }, []);
 
+  //This function handles the addition and updating of fighter data records
   const handleFighterAddUpdateClick = (submitType: string) => {
     if (submitType === "update" && selectedFighterIndex === -1) {
       setErrorMessage("Please select a fighter to update.");
@@ -68,12 +74,14 @@ function FighterManagementScreen() {
       selectedFighterIndex !== -1 && submitType === "update"
         ? fighters[selectedFighterIndex]
         : null;
-    console.log("Fighter to update:", fighterToUpdate);
+
     navigate("/fighters/add", {
       state: { submitType: submitType, initial: fighterToUpdate },
     });
   };
 
+  /*this function handles reaching out to the backend to retrieve the search data
+  based on the criteria passed in the post method*/
   const handleSearch = async (searchForm: Fighter) => {
     api.post("/fighters/search", searchForm).then(async (response) => {
       let fighterData = (await response.data) as Fighter[];
@@ -81,6 +89,8 @@ function FighterManagementScreen() {
       console.log("Search results:", fighterData);
     });
   };
+
+  //This handles the selection of a fighter record based on index
   const handleSelectFighter = (index: number) => {
     setSelectedFighterIndex(index);
   };
