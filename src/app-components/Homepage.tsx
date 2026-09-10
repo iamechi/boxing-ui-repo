@@ -1,3 +1,4 @@
+//This will represent the home page of the screen. It will provide a brief description of where the project is at.
 function Homepage() {
   return (
     <>

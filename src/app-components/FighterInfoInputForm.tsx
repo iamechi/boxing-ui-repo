@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 // /c:/boxing-app-react-ui/src/app-components/FighterInfoInputForm.tsx
 
+//Creating the default values for the fighter input form
 const defaultState: Fighter = {
   fighterID: 0,
   first_name: "",
@@ -63,6 +64,8 @@ export default function FighterInfoInputForm() {
     return Object.keys(e).length === 0;
   };
 
+  /*This function is used for sending fighter data back to the backend to be saved, whether
+  it's a existing fighter info being updated or new fighter info being saved */
   const addFighterSubmitHandler = async (fighter: Fighter) => {
     var path = "/fighters/add";
 
@@ -70,8 +73,6 @@ export default function FighterInfoInputForm() {
       path = "/fighters/update";
     }
 
-    console.log("first name: " + fighter.first_name);
-    console.log("last name: " + fighter.last_name);
     // Send a POST request to the backend API to add the new fighter
     await api
       .post(path, fighter)
@@ -88,6 +89,7 @@ export default function FighterInfoInputForm() {
       });
   };
 
+  //calls the handler for submitting and saving fighter info and validate the input for the form
   const handleSubmit = (ev?: React.FormEvent) => {
     ev?.preventDefault();
     if (!validate()) return;
@@ -95,6 +97,7 @@ export default function FighterInfoInputForm() {
     addFighterSubmitHandler(form);
   };
 
+  //resets the form to empty values
   const handleReset = () => {
     setForm({ ...defaultState });
     setErrors({});

@@ -3,6 +3,7 @@ import HomeScreen from "./app-components/HomeScreen";
 import FighterManagementScreen from "./app-components/FighterManagementScreen";
 import FighterInfoInputForm from "./app-components/FighterInfoInputForm";
 import Homepage from "./app-components/Homepage";
+import UnderConstruction from "./app-components/UnderConstruction";
 
 function App() {
   return (
@@ -14,13 +15,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomeScreen />}>
-            <Route path="home" element={<Homepage />} />
-            <Route path="areas" element={<></>} />
+            <Route path="/home" element={<Homepage />} />
+            <Route path="areas" element={<UnderConstruction />} />
             <Route path="fighters" element={<FighterManagementScreen />} />
             <Route path="fighters/add" element={<FighterInfoInputForm />} />
-            <Route path="schedulefight" element={<></>} />
-            <Route path="calendar" element={<></>} />
-            <Route path="financing" element={<></>} />
+            <Route path="schedulefight" element={<UnderConstruction />} />
+            <Route path="calendar" element={<UnderConstruction />} />
+            <Route path="financing" element={<UnderConstruction />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -5,7 +5,7 @@ import "/src/BoxingApp.css";
 //This defines the menu path and title for each menu item in the HomeScreen component.
 // Each object in the array represents a menu item with its corresponding path and title.
 const menuList = [
-  { menuPath: "/home", menuTitle: "Home" },
+  { menuPath: "/", menuTitle: "Home" },
   { menuPath: "/areas", menuTitle: "Add Areas" },
   {
     menuPath: "/fighters",
@@ -19,6 +19,7 @@ const menuList = [
   { menuPath: "/financing", menuTitle: "Financing" },
 ];
 
+//This contains menu bar at the top of the screen that lets you navigate between screens
 function HomeScreen() {
   return (
     <>
