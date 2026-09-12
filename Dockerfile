@@ -24,7 +24,7 @@ RUN npm run build
 
 #STAGE 2:
 #Copying the application into a nginx web server for better performance
-FROM nginx:1.25-alpine
+FROM nginx:1.25-alpine AS runner
 
 #Removes default welcome pages
 RUN rm -rf /usr/share/nginx/html/*
