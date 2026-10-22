@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { Fighter } from "./FighterManagementScreen";
-import api from "./AxiosInstance.tsx";
+import fighterApi from "./AxiosInstance.tsx";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -73,8 +73,8 @@ export default function FighterInfoInputForm() {
       path = "/fighters/update";
     }
 
-    // Send a POST request to the backend API to add the new fighter
-    await api
+    // Send a POST request to the backend fighterApi to add the new fighter
+    await fighterApi
       .post(path, fighter)
       .then((response) => {
         // Handle successful response, e.g., show a success message or navigate to another page
