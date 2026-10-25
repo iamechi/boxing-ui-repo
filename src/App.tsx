@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeScreen from "./app-components/HomeScreen";
-import FighterManagementScreen from "./app-components/FighterManagementScreen";
-import FighterInfoInputForm from "./app-components/FighterInfoInputForm";
+import FighterManagementScreen from "./app-components/FighterScreens/FighterManagementScreen";
+import FighterInfoInputForm from "./app-components/FighterScreens/FighterInfoInputForm";
+import ArenaManagementScreen from "./app-components/ArenaScreens/ArenaManagementScreen";
+import ArenaInfoInputForm from "./app-components/ArenaScreens/ArenaInfoInputForm";
 import Homepage from "./app-components/Homepage";
 import UnderConstruction from "./app-components/UnderConstruction";
 
@@ -16,9 +18,10 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeScreen />}>
             <Route path="/home" element={<Homepage />} />
-            <Route path="areas" element={<UnderConstruction />} />
             <Route path="fighters" element={<FighterManagementScreen />} />
             <Route path="fighters/add" element={<FighterInfoInputForm />} />
+            <Route path="arenas" element={<ArenaManagementScreen />} />
+            <Route path="arenas/add" element={<ArenaInfoInputForm />} />
             <Route path="schedulefight" element={<UnderConstruction />} />
             <Route path="calendar" element={<UnderConstruction />} />
             <Route path="financing" element={<UnderConstruction />} />
