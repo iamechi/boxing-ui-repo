@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import api from "./AxiosInstance.tsx";
+import { fighterApi } from "../AxiosInstance.tsx";
 import { useNavigate } from "react-router-dom";
 import "/src/BoxingApp.css";
 
@@ -55,7 +55,7 @@ function FighterManagementScreen() {
   //retrieved the fighter data upon loading the screen
   useEffect(() => {
     const fetchFighterRecords = async () => {
-      let response = await api.get("/fighters");
+      let response = await fighterApi.get("/fighters");
       let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
     };
@@ -83,7 +83,7 @@ function FighterManagementScreen() {
   /*this function handles reaching out to the backend to retrieve the search data
   based on the criteria passed in the post method*/
   const handleSearch = async (searchForm: Fighter) => {
-    api.post("/fighters/search", searchForm).then(async (response) => {
+    fighterApi.post("/fighters/search", searchForm).then(async (response) => {
       let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
       console.log("Search results:", fighterData);
@@ -148,9 +148,7 @@ function FighterManagementScreen() {
           {fighters.map((fighter, index) => (
             <tr
               key={fighter.fighterID}
-              className={
-                selectedFighterIndex === index ? "fighterSelected" : ""
-              }
+              className={selectedFighterIndex === index ? "selected" : ""}
               onClick={() => handleSelectFighter(index)}
             >
               <td>{fighter.fighterID}</td>

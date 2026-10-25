@@ -1,6 +1,11 @@
-.fighterSelected td{
+.selected td{
   background-color: blue;
   color: white;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
 }
 
 .searchBar {
@@ -13,7 +18,26 @@
 .searchBar div{
   display: flex;
   gap: 8px;
-  margin-right: 20px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.form-container .form-container-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.form-container .form-container-column label {
+  display: flex;
+  gap: 10px;
 }
 
 #homeTitle {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import type { Fighter } from "./FighterManagementScreen";
-import fighterApi from "./AxiosInstance.tsx";
+import type { Fighter } from "./FighterManagementScreen.tsx";
+import { fighterApi } from "../AxiosInstance.tsx";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
