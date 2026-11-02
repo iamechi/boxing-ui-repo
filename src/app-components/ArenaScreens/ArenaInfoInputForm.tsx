@@ -108,6 +108,7 @@ export default function ArenaInfoInputForm() {
           {errors.arena_name && (
             <div className="error">{errors.arena_name}</div>
           )}
+
           <label>
             Arena Country:
             <input
@@ -119,6 +120,7 @@ export default function ArenaInfoInputForm() {
           {errors.arena_country && (
             <div className="error">{errors.arena_country}</div>
           )}
+
           <label>
             Arena Address:
             <input
@@ -143,6 +145,7 @@ export default function ArenaInfoInputForm() {
           {errors.arena_city && (
             <div className="error">{errors.arena_city}</div>
           )}
+
           <label>
             Arena Revenue Split:
             <input
@@ -153,6 +156,7 @@ export default function ArenaInfoInputForm() {
               }
             />
           </label>
+
           <label>
             Arena Open:
             <input
@@ -174,6 +178,7 @@ export default function ArenaInfoInputForm() {
           {errors.arena_state && (
             <div className="error">{errors.arena_state}</div>
           )}
+
           <label>
             Arena Seats:
             <input
@@ -182,6 +187,7 @@ export default function ArenaInfoInputForm() {
               onChange={(e) => update("seats", parseInt(e.target.value))}
             />
           </label>
+
           <label>
             Arena Safety Compliant:
             <input
@@ -192,7 +198,7 @@ export default function ArenaInfoInputForm() {
           </label>
         </div>
       </div>
-      <div>
+      <div className={"buttonLayout"}>
         <button type="button" onClick={() => navigate("/arenas")}>
           Cancel
         </button>

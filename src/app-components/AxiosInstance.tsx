@@ -15,4 +15,11 @@ const arenaApi = axios.create({
   },
 });
 
-export { fighterApi, arenaApi };
+const scheduleApi = axios.create({
+  baseURL: "http://localhost:8083",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+export { fighterApi, arenaApi, scheduleApi };

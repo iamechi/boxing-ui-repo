@@ -83,6 +83,7 @@ function FighterManagementScreen() {
   /*this function handles reaching out to the backend to retrieve the search data
   based on the criteria passed in the post method*/
   const handleSearch = async (searchForm: Fighter) => {
+    console.log("Searching fighters with criteria:", searchForm);
     fighterApi.post("/fighters/search", searchForm).then(async (response) => {
       let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
