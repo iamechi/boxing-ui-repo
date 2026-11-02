@@ -40,7 +40,7 @@ export default function ScheduledFightsListScreen() {
 
   //initializing all of the variables and functions that use the UseState hook
   const [scheduledFights, setScheduledFights] = useState<ScheduledFight[]>([]);
-  const [fightIndex, setFightIndex] = useState(-1);
+  //const [fightIndex, setFightIndex] = useState(-1);
   const [searchForm, setSearchForm] = useState<ScheduledFightSearchForm>(
     {} as ScheduledFightSearchForm,
   );
@@ -142,7 +142,7 @@ export default function ScheduledFightsListScreen() {
           {scheduledFights.map((fight, index) => (
             <tr
               key={index}
-              className={fightIndex === index ? "selected" : ""}
+              //className={fightIndex === index ? "selected" : ""}
               //onClick={() => handleSelectScheduledFight(index)}
             >
               <td>{fight.fighter_1}</td>

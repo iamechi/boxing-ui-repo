@@ -1,4 +1,3 @@
-import Homepage from "./Homepage";
 import Menu from "./Menu";
 import Title from "./Title";
 import "/src/BoxingApp.css";
