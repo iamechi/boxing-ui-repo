@@ -106,13 +106,12 @@ export default function FighterInfoInputForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      style={{ maxWidth: 640, display: "grid", gap: 8 }}
     >
       <div>
         {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
       </div>
-      <div style={{ display: "flex", gap: 8 }}>
-        <div style={{ flex: 1 }}>
+      <div className={"form-container"}>
+        <div className={"form-container-column"}>
           <label>
             First name
             <input
@@ -120,12 +119,32 @@ export default function FighterInfoInputForm() {
               value={form.first_name}
               onChange={(e) => update("first_name", e.target.value)}
             />
+            {errors.first_name && (
+              <div style={{ color: "red" }}>{errors.first_name}</div>
+            )} 
           </label>
-          {errors.first_name && (
-            <div style={{ color: "red" }}>{errors.first_name}</div>
-          )}
-        </div>
-        <div style={{ flex: 1 }}>
+
+          <label>
+            State of Residence
+            <input
+              type="text"
+              value={form.current_state_residence}
+              onChange={(e) => update("current_state_residence", e.target.value)}
+            />
+          </label>
+
+          <label>
+            Wins
+            <input
+              type="number"
+              min={0}
+              value={form.wins ?? 0}
+              onChange={(e) => update("wins", Number(e.target.value))}
+            />
+            {errors.wins && <div style={{ color: "red" }}>{errors.wins}</div>}             
+          </label>
+       </div>
+        <div className={"form-container-column"}>
           <label>
             Last name
             <input
@@ -133,96 +152,76 @@ export default function FighterInfoInputForm() {
               value={form.last_name}
               onChange={(e) => update("last_name", e.target.value)}
             />
+            {errors.last_name && (
+              <div style={{ color: "red" }}>{errors.last_name}</div>
+            )}
+
           </label>
-          {errors.last_name && (
-            <div style={{ color: "red" }}>{errors.last_name}</div>
-          )}
+
+          <label>
+            Weight (lbs)
+            <input
+              type="number"
+              min={0}
+              step="0.1"
+              value={form.weight ?? ""}
+              onChange={(e) =>
+                update(
+                  "weight",
+                  e.target.value === "" ? 0 : Number(e.target.value),
+                )
+              }
+            />  
+          </label>
+
+          <label>
+            Losses
+            <input
+              type="number"
+              min={0}
+              value={form.losses ?? 0}
+              onChange={(e) => update("losses", Number(e.target.value))}
+            />
+            {errors.losses && <div style={{ color: "red" }}>{errors.losses}</div>}            
+          </label> 
+        </div>
+        <div className={"form-container-column"}>
+          <label>
+            City of Residence
+            <input
+              type="text"
+              value={form.current_city_residence}
+              onChange={(e) => update("current_city_residence", e.target.value)}
+            />
+          </label>
+
+          <label>
+            Height (inches)
+            <input
+              type="number"
+              min={0}
+              value={form.height ?? ""}
+              onChange={(e) =>
+                update(
+                  "height",
+                  e.target.value === "" ? 0 : Number(e.target.value),
+                )
+              }
+            />
+          </label>
+
+          <label>
+            Draws
+            <input
+              type="number"
+              min={0}
+              value={form.draws ?? 0}
+              onChange={(e) => update("draws", Number(e.target.value))}
+            />  
+          </label>
         </div>
       </div>
-      <div>
-        <label>
-          State of Residence
-          <input
-            type="text"
-            value={form.current_state_residence}
-            onChange={(e) => update("current_state_residence", e.target.value)}
-          />
-        </label>
-        <label>
-          City of Residence
-          <input
-            type="text"
-            value={form.current_city_residence}
-            onChange={(e) => update("current_city_residence", e.target.value)}
-          />
-        </label>
-      </div>
-      <div style={{ display: "flex", gap: 8 }}>
-        <label style={{ flex: 1 }}>
-          Weight (lbs)
-          <input
-            type="number"
-            min={0}
-            step="0.1"
-            value={form.weight ?? ""}
-            onChange={(e) =>
-              update(
-                "weight",
-                e.target.value === "" ? 0 : Number(e.target.value),
-              )
-            }
-          />
-        </label>
-
-        <label style={{ flex: 1 }}>
-          Height (inches)
-          <input
-            type="number"
-            min={0}
-            value={form.height ?? ""}
-            onChange={(e) =>
-              update(
-                "height",
-                e.target.value === "" ? 0 : Number(e.target.value),
-              )
-            }
-          />
-        </label>
-      </div>
-      <div style={{ display: "flex", gap: 8 }}>
-        <label style={{ flex: 1 }}>
-          Wins
-          <input
-            type="number"
-            min={0}
-            value={form.wins ?? 0}
-            onChange={(e) => update("wins", Number(e.target.value))}
-          />
-          {errors.wins && <div style={{ color: "red" }}>{errors.wins}</div>}
-        </label>
-
-        <label style={{ flex: 1 }}>
-          Losses
-          <input
-            type="number"
-            min={0}
-            value={form.losses ?? 0}
-            onChange={(e) => update("losses", Number(e.target.value))}
-          />
-          {errors.losses && <div style={{ color: "red" }}>{errors.losses}</div>}
-        </label>
-
-        <label style={{ flex: 1 }}>
-          Draws
-          <input
-            type="number"
-            min={0}
-            value={form.draws ?? 0}
-            onChange={(e) => update("draws", Number(e.target.value))}
-          />
-        </label>
-      </div>
-      <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
+      <div className={"buttonLayout"}>
         <button type="button" onClick={() => navigate("/fighters")}>
           Cancel
         </button>

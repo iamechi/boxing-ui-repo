@@ -11,15 +11,15 @@ const menuList = [
   },
   {
     menuPath: "/fighters",
-    menuTitle: "Add Fighters",
+    menuTitle: "Fighter Management",
   },
   {
     menuPath: "/arenas",
-    menuTitle: "Add Arenas",
+    menuTitle: "Arena Management",
   },
   {
     menuPath: "/schedulefight",
-    menuTitle: "Schedule Fight",
+    menuTitle: "Fight Scheduling",
   },
   {
     menuPath: "/calendar",
