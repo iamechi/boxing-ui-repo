@@ -2,21 +2,21 @@ import axios from "axios";
 
 //This api is an axios instance that will be used to make and receive http requests from the backend
 const fighterApi = axios.create({
-  baseURL: "http://localhost:8081",
+  baseURL: "/api/fighters",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 const arenaApi = axios.create({
-  baseURL: "http://localhost:8082",
+  baseURL: "/api/arenas",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 const scheduleApi = axios.create({
-  baseURL: "http://localhost:8083",
+  baseURL: "/api/matches",
   headers: {
     "Content-Type": "application/json",
   },
