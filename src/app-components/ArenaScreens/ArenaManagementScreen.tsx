@@ -44,7 +44,7 @@ function ArenaManagementScreen() {
   //retrieved the arena data upon loading the screen
   useEffect(() => {
     const fetchArenaRecords = async () => {
-      let response = await arenaApi.get("/");
+      let response = await arenaApi.get("/arenas");
       let arenaData = (await response.data) as Arena[];
       console.log("Arena data fetched:", arenaData); // Log the fetched data for debugging
       setArenas(arenaData);

@@ -42,7 +42,7 @@ export default function SelectFightersForm() {
     //This is used to retrieve the data on initial rendering of screen
     useEffect(() => {
         const fetchFighterRecords = async() => {
-            let response = await fighterApi.get("/");
+            let response = await fighterApi.get("/fighters");
             let fighterData = (await response.data) as Fighter[];
             setFighters(fighterData);
         }
@@ -74,7 +74,7 @@ export default function SelectFightersForm() {
 
     //handles the searching of fighters
     const handleSearch = async (searchForm: SelectFightersFormProps) => {
-        fighterApi.post("/search", searchForm).then(async (response) => {
+        fighterApi.post("/fighters/search", searchForm).then(async (response) => {
             let fighterData = response.data;
             setFighters(fighterData);
         });
