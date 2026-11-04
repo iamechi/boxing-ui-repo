@@ -55,7 +55,7 @@ function FighterManagementScreen() {
   //retrieved the fighter data upon loading the screen
   useEffect(() => {
     const fetchFighterRecords = async () => {
-      let response = await fighterApi.get("/fighters");
+      let response = await fighterApi.get("/");
       let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
     };

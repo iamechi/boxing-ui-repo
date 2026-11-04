@@ -67,10 +67,10 @@ export default function FighterInfoInputForm() {
   /*This function is used for sending fighter data back to the backend to be saved, whether
   it's a existing fighter info being updated or new fighter info being saved */
   const addFighterSubmitHandler = async (fighter: Fighter) => {
-    var path = "/fighters/add";
+    var path = "/add";
 
     if (submitType === "update") {
-      path = "/fighters/update";
+      path = "/update";
     }
 
     // Send a POST request to the backend fighterApi to add the new fighter
