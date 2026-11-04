@@ -55,7 +55,7 @@ function FighterManagementScreen() {
   //retrieved the fighter data upon loading the screen
   useEffect(() => {
     const fetchFighterRecords = async () => {
-      let response = await fighterApi.get("/");
+      let response = await fighterApi.get("");
       let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
     };
@@ -84,7 +84,7 @@ function FighterManagementScreen() {
   based on the criteria passed in the post method*/
   const handleSearch = async (searchForm: Fighter) => {
     console.log("Searching fighters with criteria:", searchForm);
-    fighterApi.post("/fighters/search", searchForm).then(async (response) => {
+    fighterApi.post("/search", searchForm).then(async (response) => {
       let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
       console.log("Search results:", fighterData);
