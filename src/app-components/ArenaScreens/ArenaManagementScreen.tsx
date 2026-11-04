@@ -44,7 +44,7 @@ function ArenaManagementScreen() {
   //retrieved the arena data upon loading the screen
   useEffect(() => {
     const fetchArenaRecords = async () => {
-      let response = await arenaApi.get("/arenas");
+      let response = await arenaApi.get("/");
       let arenaData = (await response.data) as Arena[];
       console.log("Arena data fetched:", arenaData); // Log the fetched data for debugging
       setArenas(arenaData);
@@ -70,7 +70,7 @@ function ArenaManagementScreen() {
   };
   //This function sends a post request with the search criteria to the backend to retrieve the arena records*/
   const handleSearch = async (searchForm: Arena) => {
-    arenaApi.post("/arenas/search", searchForm).then(async (response) => {
+    arenaApi.post("/search", searchForm).then(async (response) => {
       let arenaData = (await response.data) as Arena[];
       setArenas(arenaData);
       console.log("Search results:", arenaData);

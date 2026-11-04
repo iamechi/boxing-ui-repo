@@ -59,7 +59,7 @@ export default function ScheduledFightsListScreen() {
   //This function handles the searching of scheduled fights based on the search form data
   const handleSearchScheduledFights = async () => {
     scheduleApi
-      .post("/schedulefight/search", searchForm)
+      .post("/search", searchForm)
       .then(async (response) => {
         let fightData = (await response.data) as ScheduledFight[];
         setScheduledFights(fightData);
