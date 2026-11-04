@@ -59,10 +59,10 @@ export default function ArenaInfoInputForm() {
 
   //This sends a post request to the backend to add or update an arena record based on the submitType value
   const addArenaSubmitHandler = async (arena: Arena) => {
-    var path = "/arenas/add";
+    var path = "/add";
 
     if (submitType === "update") {
-      path = "/arenas/update";
+      path = "/update";
     }
 
     await arenaApi
