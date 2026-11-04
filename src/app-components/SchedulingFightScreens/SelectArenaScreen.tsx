@@ -34,7 +34,7 @@ export default function SelectArenaScreen() {
     //This is used to retrieve the data on initial rendering of screen
     useEffect(() => {
         const fetchArenaRecords = async() => {
-            let response = await arenaApi.get("/");
+            let response = await arenaApi.get("/arenas");
             let arenaData = (await response.data) as Arena[];
             setArenas(arenaData);
         }
@@ -45,7 +45,7 @@ export default function SelectArenaScreen() {
 
     //This handles the search functionality for arenas
     const handleSearch = async () => {
-        arenaApi.post("/search", searchForm).then(async (response) => {
+        arenaApi.post("/arenas/search", searchForm).then(async (response) => {
             let arenaData = (await response.data) as Arena[];
             setArenas(arenaData);
         });

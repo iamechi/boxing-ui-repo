@@ -23,7 +23,7 @@ export default function FightSchedulingConfirmationScreen() {
     const scheduleFightHandler = async (data: ScheduledFightData) => {
         // Add the logic to schedule the fight here
         scheduleApi
-        .post("/save", data)
+        .post("/schedulefight/save", data)
         .then(response => {
             console.log("Fight scheduled successfully:", response.data);
             navigate("/schedulefight");
