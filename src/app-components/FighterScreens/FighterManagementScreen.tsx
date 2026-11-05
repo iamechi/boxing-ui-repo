@@ -157,7 +157,7 @@ function FighterManagementScreen() {
               <td>{fighter.last_name}</td>
               <td>{fighter.height}</td>
               <td>{fighter.weight}</td>
-              <td>{fighter.fights}</td>
+              <td>{fighter.wins + fighter.losses + fighter.draws}</td>
               <td>{fighter.wins}</td>
               <td>{fighter.losses}</td>
               <td>{fighter.draws}</td>
