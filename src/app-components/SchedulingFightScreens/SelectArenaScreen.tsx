@@ -63,20 +63,22 @@ export default function SelectArenaScreen() {
 
     return (
         <>
-            <h2 id="pageHeader">Select Your Arena</h2>
-                {/* Render the arena table and search form here */}
-            <div className="searchBar">
-                {/* Render the arena table and search form here */}
-                <div>
-                    <label>Name:</label>
-                    <input type="text" value={searchForm.name} onChange={(e) => setSearchForm({...searchForm, name: e.target.value})} />
-                </div>
-                <div>
-                    <label>Address:</label>
-                    <input type="text" value={searchForm.address} onChange={(e) => setSearchForm({...searchForm, address: e.target.value})} />
-                </div>
-                <div>
-                    <button onClick={() => handleSearch()}>Search</button>
+            <div className={"topSectionBackground"}>
+                <h2 id="pageHeader">Select Your Arena</h2>
+                    {/* Render the arena table and search form here */}
+                <div className="searchBar">
+                    {/* Render the arena table and search form here */}
+                    <div>
+                        <label>Name:</label>
+                        <input type="text" value={searchForm.name} onChange={(e) => setSearchForm({...searchForm, name: e.target.value})} />
+                    </div>
+                    <div>
+                        <label>Address:</label>
+                        <input type="text" value={searchForm.address} onChange={(e) => setSearchForm({...searchForm, address: e.target.value})} />
+                    </div>
+                    <div>
+                        <button onClick={() => handleSearch()}>Search</button>
+                    </div>
                 </div>
             </div>
             <table>

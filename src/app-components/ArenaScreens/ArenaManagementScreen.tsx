@@ -84,49 +84,51 @@ function ArenaManagementScreen() {
 
   return (
     <>
-      <h2 id="pageHeader">Arena List</h2>
-      <div className={"searchBar"}>
-        <div>
-          <label>Arena Name:</label>
-          <input
-            type="text"
-            value={searchForm.name || ""}
-            onChange={(e) =>
-              setSearchForm({ ...searchForm, name: e.target.value })
-            }
-          />
+      <div className={"topSectionBackground"}>
+        <h2 id="pageHeader">Arena List</h2>
+        <div className={"searchBar"}>
+          <div>
+            <label>Arena Name:</label>
+            <input
+              type="text"
+              value={searchForm.name || ""}
+              onChange={(e) =>
+                setSearchForm({ ...searchForm, name: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label>City:</label>
+            <input
+              type="text"
+              value={searchForm.city || ""}
+              onChange={(e) =>
+                setSearchForm({ ...searchForm, city: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label>State:</label>
+            <input
+              type="text"
+              value={searchForm.state || ""}
+              onChange={(e) =>
+                setSearchForm({ ...searchForm, state: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label>Country:</label>
+            <input
+              type="text"
+              value={searchForm.country || ""}
+              onChange={(e) =>
+                setSearchForm({ ...searchForm, country: e.target.value })
+              }
+            />
+          </div>
+          <button onClick={() => handleSearch(searchForm)}>Search</button>
         </div>
-        <div>
-          <label>City:</label>
-          <input
-            type="text"
-            value={searchForm.city || ""}
-            onChange={(e) =>
-              setSearchForm({ ...searchForm, city: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          <label>State:</label>
-          <input
-            type="text"
-            value={searchForm.state || ""}
-            onChange={(e) =>
-              setSearchForm({ ...searchForm, state: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          <label>Country:</label>
-          <input
-            type="text"
-            value={searchForm.country || ""}
-            onChange={(e) =>
-              setSearchForm({ ...searchForm, country: e.target.value })
-            }
-          />
-        </div>
-        <button onClick={() => handleSearch(searchForm)}>Search</button>
       </div>
       <table>
         <thead>

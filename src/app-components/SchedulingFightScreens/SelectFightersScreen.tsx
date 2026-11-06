@@ -97,37 +97,39 @@ export default function SelectFightersForm() {
 
     return (
     <>
-      <h2 id="pageHeader">Select Your Fighters</h2>
-      {/*Commenting out the html code for showing the selected fighters names at the top
-      <div id="selectFighterVsSection">
-        <input
-            value={fighter1} 
-            placeholder="Fighter 1"
-        />
-        <label>vs</label>
-        <input
-            value={fighter2} 
-            placeholder="Fighter 2"
-        />
-      </div>
-        */}
-      <div className={"searchBar"}>
-        <div>
-          <label>First Name:</label>
+      <div className={"topSectionBackground"}>
+        <h2 id="pageHeader">Select Your Fighters</h2>
+        {/*Commenting out the html code for showing the selected fighters names at the top
+        <div id="selectFighterVsSection">
           <input
-              type="text"
-              onChange={(e) => setSearchForm({...searchForm, first_name: e.target.value}) }
+              value={fighter1} 
+              placeholder="Fighter 1"
+          />
+          <label>vs</label>
+          <input
+              value={fighter2} 
+              placeholder="Fighter 2"
           />
         </div>
-       <div>
-            <label>Last Name:</label>
+          */}
+        <div className={"searchBar"}>
+          <div>
+            <label>First Name:</label>
             <input
                 type="text"
-                onChange={(e) => setSearchForm({...searchForm, last_name: e.target.value})}
+                onChange={(e) => setSearchForm({...searchForm, first_name: e.target.value}) }
             />
-        </div>
-        <div>
-            <button onClick={() => {handleSearch(searchForm)}}>Search</button>
+          </div>
+         <div>
+              <label>Last Name:</label>
+              <input
+                  type="text"
+                  onChange={(e) => setSearchForm({...searchForm, last_name: e.target.value})}
+              />
+          </div>
+          <div>
+              <button onClick={() => {handleSearch(searchForm)}}>Search</button>
+          </div>
         </div>
       </div>
       <table>
