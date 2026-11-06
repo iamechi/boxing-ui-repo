@@ -98,42 +98,44 @@ function FighterManagementScreen() {
 
   return (
     <>
-      <h2 id="pageHeader">Fighter List</h2>
-      <div className={"searchBar"}>
-        <div>
-          <label>First Name:</label>
-          <input
-            type="text"
-            onChange={(e) =>
-              setSearchForm({ ...searchForm, first_name: e.target.value })
-            }
-            placeholder="Search first name..."
-          />
-        </div>
-        <div>
-          <label>Last Name:</label>
-          <input
-            type="text"
-            onChange={(e) =>
-              setSearchForm({ ...searchForm, last_name: e.target.value })
-            }
-            placeholder="Search last name..."
-          />
-        </div>
-        <div>
-          <label>State:</label>
-          <input
-            type="text"
-            onChange={(e) =>
-              setSearchForm({
-                ...searchForm,
-                current_state_residence: e.target.value,
-              })
-            }
-            placeholder="Search state..."
-          />
-        </div>
-        <button onClick={() => handleSearch(searchForm)}>Search</button>
+      <div className={"topSectionBackground"}>
+        <h2 id="pageHeader">Fighter List</h2>
+        <div className={"searchBar"}>
+          <div>
+            <label>First Name:</label>
+            <input
+              type="text"
+              onChange={(e) =>
+                setSearchForm({ ...searchForm, first_name: e.target.value })
+              }
+              placeholder="Search first name..."
+            />
+          </div>
+          <div>
+            <label>Last Name:</label>
+            <input
+              type="text"
+              onChange={(e) =>
+                setSearchForm({ ...searchForm, last_name: e.target.value })
+              }
+              placeholder="Search last name..."
+            />
+          </div>
+          <div>
+            <label>State:</label>
+            <input
+              type="text"
+              onChange={(e) =>
+                setSearchForm({
+                  ...searchForm,
+                  current_state_residence: e.target.value,
+                })
+              }
+              placeholder="Search state..."
+            />
+          </div>
+          <button onClick={() => handleSearch(searchForm)}>Search</button>
+        </div>  
       </div>
       <table>
         <thead>

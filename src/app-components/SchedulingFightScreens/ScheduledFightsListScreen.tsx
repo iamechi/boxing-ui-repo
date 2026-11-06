@@ -84,49 +84,51 @@ export default function ScheduledFightsListScreen() {
 
   return (
     <>
-      <h2 id="pageHeader">Scheduled Fights</h2>
-      <div className={"searchBar"}>
-        <div>
-          <label>City:</label>
-          <input
-            type="text"
-            value={searchForm.city}
-            onChange={(e) =>
-              setSearchForm({ ...searchForm, city: e.target.value })
-            }
-          />
+      <div className={"topSectionBackground"}>
+        <h2 id="pageHeader">Scheduled Fights</h2>
+        <div className={"searchBar"}>
+          <div>
+            <label>City:</label>
+            <input
+              type="text"
+              value={searchForm.city}
+              onChange={(e) =>
+                setSearchForm({ ...searchForm, city: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label>State:</label>
+            <input
+              type="text"
+              value={searchForm.state}
+              onChange={(e) =>
+                setSearchForm({ ...searchForm, state: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label>Country:</label>
+            <input
+              type="text"
+              value={searchForm.country}
+              onChange={(e) =>
+                setSearchForm({ ...searchForm, country: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label>Date:</label>
+            <input
+              type="date"
+              value={searchForm.date}
+              onChange={(e) =>
+                setSearchForm({ ...searchForm, date: e.target.value })
+              }
+            />
+          </div>
+          <button onClick={() => handleSearchScheduledFights()}>Search</button>
         </div>
-        <div>
-          <label>State:</label>
-          <input
-            type="text"
-            value={searchForm.state}
-            onChange={(e) =>
-              setSearchForm({ ...searchForm, state: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          <label>Country:</label>
-          <input
-            type="text"
-            value={searchForm.country}
-            onChange={(e) =>
-              setSearchForm({ ...searchForm, country: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          <label>Date:</label>
-          <input
-            type="date"
-            value={searchForm.date}
-            onChange={(e) =>
-              setSearchForm({ ...searchForm, date: e.target.value })
-            }
-          />
-        </div>
-        <button onClick={() => handleSearchScheduledFights()}>Search</button>
       </div>
       <table>
         <thead>
