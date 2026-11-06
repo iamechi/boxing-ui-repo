@@ -58,6 +58,10 @@
   gap: 10px;
 }
 
+.topSectionBackground {
+  background-color: red;
+}
+
 #homeTitle {
     display: flex;
     justify-content: center;
