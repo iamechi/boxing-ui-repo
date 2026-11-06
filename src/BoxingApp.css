@@ -47,6 +47,7 @@
 
 .column-name {
     width: 5%;
+    background-color: grey;
 }
 
 .buttonLayout {
@@ -60,10 +61,12 @@
 #homeTitle {
     display: flex;
     justify-content: center;
+    background-color: red;
 }
 
 #pageHeader {
     justify-content: left;
+    background-color: red;
 }
 
 #selectFighterPageHeader {

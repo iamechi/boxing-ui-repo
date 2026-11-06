@@ -50,7 +50,7 @@ export default function FightSchedulingConfirmationScreen() {
 
     return (
         <>
-            <h2>Fight Scheduling Confirmation</h2>
+            <h2 id="pageHeader">Fight Scheduling Confirmation</h2>
             <div id="fighterScreenConfirmation">
                 <div id="fighterVsSection">
                     <p>{selectedFighters[0].first_name + " " + selectedFighters[0].last_name}</p>
