@@ -83,7 +83,9 @@ export default function SelectArenaScreen() {
                 <thead>
                     <tr>
                         {colHeaders.map((header, index) => (
-                            <th key={index}>{header}</th>
+                            <th className="column-name" key={index}>
+                                {header}
+                            </th>
                         ))}
                     </tr>
                 </thead>
