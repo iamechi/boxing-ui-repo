@@ -35,8 +35,10 @@ const menuList = [
 function HomeScreen() {
   return (
     <>
-      <Title Title={"K.O. Time Flow"} />
-      <Menu menuList={menuList} />
+      <div className={"topSectionBackground"}>
+        <Title Title={"K.O. Time Flow"} />
+        <Menu menuList={menuList} />      
+      </div>
     </>
   );
 }
