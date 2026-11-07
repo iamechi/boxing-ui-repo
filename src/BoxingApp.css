@@ -60,6 +60,13 @@
   gap: 10px;
 }
 
+.buttonFormLayout {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 10px;
+}
+
 .topSectionBackground {
   background-color: red;
 }

@@ -161,7 +161,7 @@ function ArenaManagementScreen() {
           ))}
         </tbody>
       </table>
-      <div>
+      <div className="buttonFormLayout">
         <button onClick={() => handleAddOrUpdateArena("add")}>Add Arena</button>
         <button onClick={() => handleAddOrUpdateArena("update")}>
           Update Arena
