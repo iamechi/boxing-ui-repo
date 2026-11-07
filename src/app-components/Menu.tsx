@@ -14,7 +14,7 @@ function Menu({ menuList }: MenuProps) {
     <>
       <nav id="navBar">
         {menuList.map((menuLabel) => (
-          <Link style={{ color: 'antiquewhite' }} key={menuLabel.menuTitle} to={menuLabel.menuPath}>
+          <Link className={"nav-pill"} key={menuLabel.menuTitle} to={menuLabel.menuPath}>
             {menuLabel.menuTitle}
           </Link>
         ))}
