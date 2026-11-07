@@ -67,6 +67,8 @@
     display: flex;
     justify-content: center;
     background-color: red;
+    margin-bottom: 0;
+    padding: 10px;
 }
 
 #pageHeader {
@@ -113,6 +115,8 @@
     justify-content: center;
     background-color: red;
     gap: 10px;
+    margin-top: 0;
+    padding: 10px;
 }
 
 
