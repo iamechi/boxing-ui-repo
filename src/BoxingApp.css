@@ -13,7 +13,7 @@
   flex-direction: row;
   justify-content: left;
   background-color:red;
-  padding: 10px;
+  padding: 20px;
   margin: 20px;
   gap: 15px;
 }
@@ -66,6 +66,7 @@
 
 #homeTitle {
     display: flex;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     justify-content: center;
     background-color: red;
     margin-bottom: 0;
