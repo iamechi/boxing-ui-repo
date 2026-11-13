@@ -72,7 +72,7 @@ function FighterManagementScreen() {
 
     let fighterToUpdate =
       selectedFighterKey !== -1 && submitType === "update"
-        ? fighters[selectedFighterKey]
+        ? fighters.find((fighter) => fighter.fighterID === selectedFighterKey)
         : null;
 
     navigate("/fighters/add", {
@@ -92,9 +92,9 @@ function FighterManagementScreen() {
     });
   };
 
-  //This handles the selection of a fighter record based on index
-  const handleSelectFighter = (index: number) => {
-    setSelectedFighterKey(index);
+  //This handles the selection of a fighter record based on key
+  const handleSelectFighter = (key: number) => {
+    setSelectedFighterKey(key);
   };
 
   return (

@@ -61,7 +61,7 @@ function ArenaManagementScreen() {
 
     let arenaToSubmit =
       selectedArenaKey !== -1 && submitType === "update"
-        ? arenas[selectedArenaKey]
+        ? arenas.find((arena) => arena.arena_id === selectedArenaKey)
         : ({} as Arena);
 
     navigate("/arenas/add", {
