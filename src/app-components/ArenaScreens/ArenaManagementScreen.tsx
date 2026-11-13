@@ -37,7 +37,7 @@ function ArenaManagementScreen() {
 
   /*All of the variables and functions that use the UseState hook are initialized here*/
   let [arenas, setArenas] = useState<Arena[]>([]);
-  let [selectedArenaIndex, setSelectedArenaIndex] = useState(-1);
+  let [selectedArenaKey, setSelectedArenaKey] = useState(-1);
   let [errorMessage, setErrorMessage] = useState<string>("");
   let [searchForm, setSearchForm] = useState<Arena>({} as Arena);
 
@@ -54,14 +54,14 @@ function ArenaManagementScreen() {
 
   //This function handles the updating and adding of arena records.
   const handleAddOrUpdateArena = async (submitType: string) => {
-    if (submitType === "update" && selectedArenaIndex === -1) {
+    if (submitType === "update" && selectedArenaKey === -1) {
       setErrorMessage("Please select an arena to update.");
       return;
     }
 
     let arenaToSubmit =
-      selectedArenaIndex !== -1 && submitType === "update"
-        ? arenas[selectedArenaIndex]
+      selectedArenaKey !== -1 && submitType === "update"
+        ? arenas[selectedArenaKey]
         : ({} as Arena);
 
     navigate("/arenas/add", {
@@ -73,13 +73,14 @@ function ArenaManagementScreen() {
     arenaApi.post("/search", searchForm).then(async (response) => {
       let arenaData = (await response.data) as Arena[];
       setArenas(arenaData);
+      setSelectedArenaKey(-1); // Clear the selected arena after a new search
       console.log("Search results:", arenaData);
     });
   };
 
   //This handles the selection functionality of an arena record
-  const handleSelectArena = (index: number) => {
-    setSelectedArenaIndex(index);
+  const handleSelectArena = (key: number) => {
+    setSelectedArenaKey(key);
   };
 
   return (
@@ -141,11 +142,11 @@ function ArenaManagementScreen() {
           </tr>
         </thead>
         <tbody>
-          {arenas.map((arena, index) => (
+          {arenas.map((arena) => (
             <tr
               key={arena.arena_id}
-              onClick={() => handleSelectArena(index)}
-              className={selectedArenaIndex === index ? "selected" : ""}
+              onClick={() => handleSelectArena(arena.arena_id)}
+              className={selectedArenaKey === arena.arena_id ? "selected" : ""}
             >
               <td>{arena.arena_id}</td>
               <td>{arena.name}</td>

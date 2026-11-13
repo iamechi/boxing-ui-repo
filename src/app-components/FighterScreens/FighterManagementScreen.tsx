@@ -48,7 +48,7 @@ function FighterManagementScreen() {
   /*Here all of the variables and functions based on the UseState hook
   are initialized*/
   let [fighters, setFighters] = useState<Fighter[]>([]);
-  let [selectedFighterIndex, setSelectedFighterIndex] = useState(-1);
+  let [selectedFighterKey, setSelectedFighterKey] = useState(-1);
   let [errorMessage, setErrorMessage] = useState<string>("");
   let [searchForm, setSearchForm] = useState<Fighter>({} as Fighter);
 
@@ -65,14 +65,14 @@ function FighterManagementScreen() {
 
   //This function handles the addition and updating of fighter data records
   const handleFighterAddUpdateClick = (submitType: string) => {
-    if (submitType === "update" && selectedFighterIndex === -1) {
+    if (submitType === "update" && selectedFighterKey === -1) {
       setErrorMessage("Please select a fighter to update.");
       return;
     }
 
     let fighterToUpdate =
-      selectedFighterIndex !== -1 && submitType === "update"
-        ? fighters[selectedFighterIndex]
+      selectedFighterKey !== -1 && submitType === "update"
+        ? fighters[selectedFighterKey]
         : null;
 
     navigate("/fighters/add", {
@@ -87,13 +87,14 @@ function FighterManagementScreen() {
     fighterApi.post("/search", searchForm).then(async (response) => {
       let fighterData = (await response.data) as Fighter[];
       setFighters(fighterData);
+      setSelectedFighterKey(-1); // Clear the selected fighter after a new search
       console.log("Search results:", fighterData);
     });
   };
 
   //This handles the selection of a fighter record based on index
   const handleSelectFighter = (index: number) => {
-    setSelectedFighterIndex(index);
+    setSelectedFighterKey(index);
   };
 
   return (
@@ -148,11 +149,11 @@ function FighterManagementScreen() {
           </tr>
         </thead>
         <tbody>
-          {fighters.map((fighter, index) => (
+          {fighters.map((fighter) => (
             <tr
               key={fighter.fighterID}
-              className={selectedFighterIndex === index ? "selected" : ""}
-              onClick={() => handleSelectFighter(index)}
+              className={selectedFighterKey === fighter.fighterID ? "selected" : ""}
+              onClick={() => handleSelectFighter(fighter.fighterID)}
             >
               <td>{fighter.fighterID}</td>
               <td>{fighter.first_name}</td>
