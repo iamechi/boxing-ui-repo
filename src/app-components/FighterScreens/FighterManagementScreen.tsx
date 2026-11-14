@@ -173,7 +173,7 @@ function FighterManagementScreen() {
           ))}
         </tbody>
       </table>
-      <div className="buttonFormLayout">
+      <div className="buttonLayout">
         <button onClick={() => handleFighterAddUpdateClick("add")}>
           Add Fighter
         </button>

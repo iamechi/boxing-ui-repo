@@ -95,6 +95,7 @@ export default function ScheduledFightsListScreen() {
               onChange={(e) =>
                 setSearchForm({ ...searchForm, city: e.target.value })
               }
+              placeholder="Search city..."
             />
           </div>
           <div>
@@ -105,6 +106,7 @@ export default function ScheduledFightsListScreen() {
               onChange={(e) =>
                 setSearchForm({ ...searchForm, state: e.target.value })
               }
+              placeholder="Search state..."
             />
           </div>
           <div>
@@ -115,6 +117,7 @@ export default function ScheduledFightsListScreen() {
               onChange={(e) =>
                 setSearchForm({ ...searchForm, country: e.target.value })
               }
+              placeholder="Search country..."
             />
           </div>
           <div>

@@ -118,6 +118,7 @@ export default function SelectFightersForm() {
             <input
                 type="text"
                 onChange={(e) => setSearchForm({...searchForm, first_name: e.target.value}) }
+                placeholder="Search first name..."
             />
           </div>
          <div>
@@ -125,6 +126,7 @@ export default function SelectFightersForm() {
               <input
                   type="text"
                   onChange={(e) => setSearchForm({...searchForm, last_name: e.target.value})}
+                  placeholder="Search last name..."
               />
           </div>
           <div>
