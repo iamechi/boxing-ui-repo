@@ -40,14 +40,22 @@ function ArenaManagementScreen() {
   let [selectedArenaKey, setSelectedArenaKey] = useState(-1);
   let [errorMessage, setErrorMessage] = useState<string>("");
   let [searchForm, setSearchForm] = useState<Arena>({} as Arena);
+  let [isLoading, setIsLoading] = useState(false);
 
   //retrieved the arena data upon loading the screen
   useEffect(() => {
+    setIsLoading(true);
     const fetchArenaRecords = async () => {
-      let response = await arenaApi.get("");
-      let arenaData = (await response.data) as Arena[];
-      console.log("Arena data fetched:", arenaData); // Log the fetched data for debugging
-      setArenas(arenaData);
+      try {
+        let response = await arenaApi.get("");
+        let arenaData = (await response.data) as Arena[];
+        console.log("Arena data fetched:", arenaData); // Log the fetched data for debugging
+        setArenas(arenaData);
+      } catch (error) {
+        console.error("Failed to fetch arenas:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchArenaRecords();
   }, []);
@@ -144,6 +152,7 @@ function ArenaManagementScreen() {
             ))}
           </tr>
         </thead>
+        {isLoading && <div className="loadingData">Loading...</div>}
         <tbody>
           {arenas.map((arena) => (
             <tr

@@ -44,14 +44,22 @@ export default function ScheduledFightsListScreen() {
   const [searchForm, setSearchForm] = useState<ScheduledFightSearchForm>(
     {} as ScheduledFightSearchForm,
   );
+  const [isLoading, setIsLoading] = useState(false);
   //const [errorMessage, setErrorMessage] = useState<string>("");
 
   //useEffect hook to retrieve the scheduled fights data upon loading the screen
   useEffect(() => {
+    setIsLoading(true);
     const fetchScheduledFights = async () => {
-      let response = await scheduleApi.get("");
-      let fightData = (await response.data) as ScheduledFight[];
-      setScheduledFights(fightData);
+      try {
+        let response = await scheduleApi.get("");
+        let fightData = (await response.data) as ScheduledFight[];
+        setScheduledFights(fightData);
+      } catch (error) {
+        console.error("Failed to fetch scheduled fights:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchScheduledFights();
   }, []);
@@ -142,7 +150,8 @@ export default function ScheduledFightsListScreen() {
               </th>
             ))}
           </tr>
-        </thead>
+        </thead>  
+        {isLoading && <div className="loadingData">Loading...</div>}
         <tbody>
           {scheduledFights.map((fight, index) => (
             <tr
@@ -161,7 +170,7 @@ export default function ScheduledFightsListScreen() {
             </tr>
           ))}
         </tbody>
-        <div>
+        <div className="buttonLayout">
           <button onClick={() => handleSchedulingFightClick("add")}>
             Schedule Fight
           </button>
