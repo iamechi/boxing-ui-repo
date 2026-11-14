@@ -20,6 +20,19 @@ export default function FightSchedulingConfirmationScreen() {
     
     let[errorMessage, setErrorMessage] = useState("");
 
+    //formatter for converting time into a 12-hour format
+    const timeFormatter = new Intl.DateTimeFormat("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+    });
+
+    //function for converting time into a 12-hour format
+    const formatTime = (time: string) => {
+        const date = new Date(`2000-01-01T${time}`);
+        return timeFormatter.format(date);
+    };
+
     const scheduleFightHandler = async (data: ScheduledFightData) => {
         // Add the logic to schedule the fight here
         scheduleApi
@@ -69,7 +82,7 @@ export default function FightSchedulingConfirmationScreen() {
                     <p>on</p>
                 </div>
                 <div>
-                    <p>{dateTimeSelectionForm.date + " " + dateTimeSelectionForm.time}</p>
+                    <p>{dateTimeSelectionForm.date + " " + formatTime(dateTimeSelectionForm.time)}</p>
                 </div>
                 <p>Are you sure you want to schedule this fight?</p>
                 <div id="fighterScreenConfirmationButtons">
