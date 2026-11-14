@@ -96,6 +96,7 @@ function ArenaManagementScreen() {
               onChange={(e) =>
                 setSearchForm({ ...searchForm, name: e.target.value })
               }
+              placeholder="Search arena name..."
             />
           </div>
           <div>
@@ -106,6 +107,7 @@ function ArenaManagementScreen() {
               onChange={(e) =>
                 setSearchForm({ ...searchForm, city: e.target.value })
               }
+              placeholder="Search city..."
             />
           </div>
           <div>
@@ -116,6 +118,7 @@ function ArenaManagementScreen() {
               onChange={(e) =>
                 setSearchForm({ ...searchForm, state: e.target.value })
               }
+              placeholder="Search state..."
             />
           </div>
           <div>

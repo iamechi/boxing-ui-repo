@@ -221,7 +221,7 @@ export default function FighterInfoInputForm() {
           </label>
         </div>
       </div>
-      <div className={"buttonLayout"}>
+      <div className={"buttonFormLayout"}>
         <button type="button" onClick={() => navigate("/fighters")}>
           Cancel
         </button>

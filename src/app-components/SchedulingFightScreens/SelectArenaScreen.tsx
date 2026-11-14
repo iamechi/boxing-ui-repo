@@ -70,11 +70,11 @@ export default function SelectArenaScreen() {
                     {/* Render the arena table and search form here */}
                     <div>
                         <label>Name:</label>
-                        <input type="text" value={searchForm.name} onChange={(e) => setSearchForm({...searchForm, name: e.target.value})} />
+                        <input type="text" value={searchForm.name} onChange={(e) => setSearchForm({...searchForm, name: e.target.value})} placeholder="Search arena name..." />
                     </div>
                     <div>
                         <label>Address:</label>
-                        <input type="text" value={searchForm.address} onChange={(e) => setSearchForm({...searchForm, address: e.target.value})} />
+                        <input type="text" value={searchForm.address} onChange={(e) => setSearchForm({...searchForm, address: e.target.value})} placeholder="Search address..." />
                     </div>
                     <div>
                         <button onClick={() => handleSearch()}>Search</button>
