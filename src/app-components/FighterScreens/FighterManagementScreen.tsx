@@ -51,13 +51,22 @@ function FighterManagementScreen() {
   let [selectedFighterKey, setSelectedFighterKey] = useState(-1);
   let [errorMessage, setErrorMessage] = useState<string>("");
   let [searchForm, setSearchForm] = useState<Fighter>({} as Fighter);
+  let [isLoading, setIsLoading] = useState(false);
 
   //retrieved the fighter data upon loading the screen
   useEffect(() => {
+    setIsLoading(true);
+
     const fetchFighterRecords = async () => {
-      let response = await fighterApi.get("");
-      let fighterData = (await response.data) as Fighter[];
-      setFighters(fighterData);
+      try {
+        let response = await fighterApi.get("");
+        let fighterData = (await response.data) as Fighter[];
+        setFighters(fighterData);
+      } catch (error) {
+        console.error("Failed to fetch fighters:", error);
+      } finally {
+        setIsLoading(false);
+      } 
     };
 
     fetchFighterRecords();
@@ -148,6 +157,7 @@ function FighterManagementScreen() {
             ))}
           </tr>
         </thead>
+        {isLoading && <div className="loadingData">Loading...</div>}
         <tbody>
           {fighters.map((fighter) => (
             <tr
