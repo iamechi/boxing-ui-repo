@@ -174,7 +174,7 @@ export default function SelectFightersForm() {
         </tbody>
       </table>
       {errorMessage && <div className={"error"}>{errorMessage}</div>}
-      <div className="buttonFormLayout">
+      <div className="buttonLayout">
             <button onClick={() => handleSelectArenaNavigation()}>Select Arenas</button>
             <button onClick={() => navigate("/schedulefight")}>Back</button>
       </div>

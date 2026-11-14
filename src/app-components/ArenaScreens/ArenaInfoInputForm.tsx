@@ -198,7 +198,7 @@ export default function ArenaInfoInputForm() {
           </label>
         </div>
       </div>
-      <div className={"buttonLayout"}>
+      <div className={"buttonFormLayout"}>
         <button type="button" onClick={() => navigate("/arenas")}>
           Cancel
         </button>

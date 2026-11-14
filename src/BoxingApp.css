@@ -27,6 +27,15 @@
   color:antiquewhite;
 }
 
+.searchBar button {
+  background-color: #6d0000;
+  color: rgb(255, 255, 255);
+  border: 0;
+  border-radius: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
 .form-container {
   display: flex;
   justify-content: center;
@@ -52,7 +61,7 @@
     background-color: grey;
 }
 
-.buttonLayout {
+.buttonFormLayout {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -60,11 +69,20 @@
   gap: 10px;
 }
 
-.buttonFormLayout {
+.buttonLayout {
   display: flex;
   flex-direction: row;
   justify-content: left;
   gap: 10px;
+}
+
+.buttonFormLayout button {
+  background-color: #8d8b8b;
+  color: rgb(0, 0, 0);
+  border: 0;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
 }
 
 .nav-pill {
@@ -131,6 +149,15 @@
   flex-direction: row;
   justify-content: center;
   gap: 10px;
+}
+
+#fighterScreenConfirmationButtons button {
+  background-color: #6d0000;
+  color: rgb(255, 255, 255);
+  border: 0;
+  border-radius: 15px;
+  padding: 8px 16px;
+  cursor: pointer;
 }
 
 #navBar {
