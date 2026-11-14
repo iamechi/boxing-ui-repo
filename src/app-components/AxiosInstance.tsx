@@ -16,7 +16,7 @@ const arenaApi = axios.create({
 });
 
 const scheduleApi = axios.create({
-  baseURL: "/schedulefight",
+  baseURL: "/api/schedulefight",
   headers: {
     "Content-Type": "application/json",
   },
