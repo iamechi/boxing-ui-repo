@@ -152,8 +152,14 @@ function ArenaManagementScreen() {
             ))}
           </tr>
         </thead>
-        {isLoading && <div className="loadingData">Loading...</div>}
         <tbody>
+          {isLoading && (
+            <tr>
+              <td colSpan={colHeaders.length}>
+                <div className="loadingData">Loading...</div>
+              </td>
+            </tr>
+          )}
           {arenas.map((arena) => (
             <tr
               key={arena.arena_id}
