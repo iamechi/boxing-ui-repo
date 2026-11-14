@@ -157,8 +157,14 @@ function FighterManagementScreen() {
             ))}
           </tr>
         </thead>
-        {isLoading && <div className="loadingData">Loading...</div>}
         <tbody>
+          {isLoading && (
+            <tr>
+              <td colSpan={colHeaders.length}>
+                <div className="loadingData">Loading...</div>
+              </td>
+            </tr>
+          )}
           {fighters.map((fighter) => (
             <tr
               key={fighter.fighterID}
