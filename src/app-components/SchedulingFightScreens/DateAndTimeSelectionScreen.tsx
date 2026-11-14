@@ -54,7 +54,7 @@ export default function DateAndTimeSelectionScreen() {
             </div>
         </div>
         {errorMessage && <p className={"error"}>{errorMessage}</p>}
-        <div className="buttonFormLayout">
+        <div className="buttonLayout">
             <button onClick={() => navigate("/schedulefight/selectarena")}>Back</button>
             <button onClick={() => handleNext()}>Next</button>
         </div>

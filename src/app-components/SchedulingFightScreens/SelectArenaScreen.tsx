@@ -109,7 +109,7 @@ export default function SelectArenaScreen() {
                 </tbody>
             </table>
             {errorMessage && <p className="error">{errorMessage}</p>}
-            <div className="buttonFormLayout">
+            <div className="buttonLayout">
                 <button onClick={() => handleChooseDateAndTime()}>
                     Choose Date & Time
                 </button>
